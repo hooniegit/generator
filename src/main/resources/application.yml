@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: generator
+
+  kafka:
+    bootstrap-servers: ${kafka.bootstrap.servers}
+    producer:
+      group-id: ${kafka.producer.group.id}
+      key-serializer: org.apache.kafka.common.serialization.ByteArraySerializer
+      value-serializer: org.apache.kafka.common.serialization.ByteArraySerializer
+      buffer-memory: 67108864
+      properties:
+        max-request-size: 20971520
