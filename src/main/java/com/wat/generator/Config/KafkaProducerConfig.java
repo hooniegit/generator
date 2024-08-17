@@ -28,6 +28,7 @@ public class KafkaProducerConfig {
         Map<String, Object> props = kafkaProperties.buildProducerProperties(sslBundles);
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, ByteArraySerializer.class);
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, ByteArraySerializer.class);
+        props.put(ProducerConfig.MAX_REQUEST_SIZE_CONFIG, 10485760);
         return new DefaultKafkaProducerFactory<>(props);
     }
 

@@ -9,5 +9,4 @@ spring:
       key-serializer: org.apache.kafka.common.serialization.ByteArraySerializer
       value-serializer: org.apache.kafka.common.serialization.ByteArraySerializer
       buffer-memory: 67108864
-      properties:
-        max-request-size: 20971520
+      max-request-size: 20971520

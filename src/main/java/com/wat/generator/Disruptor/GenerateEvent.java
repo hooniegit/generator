@@ -1,6 +1,5 @@
-package com.wat.generator.Event;
+package com.wat.generator.Disruptor;
 
-import org.apache.kafka.clients.producer.KafkaProducer;
 import org.springframework.kafka.core.KafkaTemplate;
 
 import com.wat.generator.Class.RAW;
@@ -13,4 +12,9 @@ import lombok.Setter;
 public class GenerateEvent {
     private RAW raw;
     private KafkaTemplate<byte[], byte[]> producer;
+    
+    public void clear() {
+    	this.raw = null;
+    	this.producer = null;
+    }
 }
