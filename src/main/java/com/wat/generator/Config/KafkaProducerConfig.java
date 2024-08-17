@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.boot.ssl.SslBundles;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
@@ -33,6 +34,7 @@ public class KafkaProducerConfig {
     }
 
     @Bean
+    @Scope("prototype")
     public KafkaTemplate<byte[], byte[]> kafkaTemplate() {
         return new KafkaTemplate<>(producerFactory());
     }
