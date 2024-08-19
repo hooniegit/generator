@@ -26,7 +26,7 @@ public class DataGenerator implements Runnable {
     public DataGenerator(GenerateEventProducer eventProducer, ApplicationContext context) {
         this.eventProducer = eventProducer;
         this.producerList = new ArrayList<>();
-        for (int i = 0; i < 128; i++) {
+        for (int i = 0; i < 200; i++) {
         	this.producerList.add(context.getBean(KafkaTemplate.class));
         }
     }
@@ -34,14 +34,14 @@ public class DataGenerator implements Runnable {
     @PostConstruct
     public void run() {
     	while (true) {
-	    	for (int location = 0; location < 64; location++) {
+	    	for (int location = 1; location <= 1; location++) {
 	    		
 		        List<RAW_BODY> bodyList = new ArrayList<>();
 		        
-		        for (int source = 1; source <= 20; source++) {
+		        for (int source = 1; source <= 8; source++) {
 		        	String SOURCE =  "SRC" + String.format("%03d", source);
 		        	
-			        for (int tag = 1; tag <= 3000; tag++) { 	
+			        for (int tag = 1; tag <= 7500; tag++) { 	
 			            RAW_BODY body = new RAW_BODY();
 			            body.setSOURCE(SOURCE);
 			            body.setTAG(SOURCE + ".T" + String.format("%04d", tag));
@@ -52,18 +52,18 @@ public class DataGenerator implements Runnable {
 			        
 			        RAW raw = new RAW();
 			        RAW_HEADER header = new RAW_HEADER();
-			        header.setLOCATION("LOC" + String.format("%02d", location + 1));
+			        header.setLOCATION("LOC" + String.format("%02d", location));
 			        raw.setHEADER(header);
 			        raw.setBODY(bodyList);
 			        
                     int index = counter.getAndIncrement() % producerList.size();
                     eventProducer.onData(raw, producerList.get(index));
 			        
-			        System.out.println("[Module] Data Generated for LOC " + location);
+			        System.out.println("[Module] Data Generated for SRC " + source);
 			        
 			        try {
-			        	Thread.sleep(200);
-			        } catch (Exception ex) {}       
+			        	Thread.sleep(125);
+			        } catch (Exception ex) {}
 			        
 		        }
 

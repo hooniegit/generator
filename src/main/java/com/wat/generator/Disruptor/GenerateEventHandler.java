@@ -23,8 +23,8 @@ public class GenerateEventHandler implements EventHandler<GenerateEvent> {
 
 	        ProducerRecord<byte[], byte[]> record = new ProducerRecord<>(TOPIC, null, userBytes);
 	        
+	        System.out.println("[Handler] Will Send Data");
 	        producer.send(record);
-	        System.out.println("[Handler] Data Sent");
 	    } catch (Exception e) {}
     }
 }
